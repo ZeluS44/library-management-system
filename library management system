@@ -1,0 +1,62 @@
+class library():
+    def __init__(self):
+        self.books= "books.txt"
+    def list_books(self):
+        books= open("books.txt","r",encoding="utf-8")
+        content=books.read()
+        print(content)
+        
+        lines = books.readlines()
+
+        for i in lines:
+            attributes=i.split(",")
+            print("book name:",attributes[0],"author:",attributes[1])
+    
+    def add_book(self):
+        books= open("books.txt","r",encoding="utf-8")
+        book_name = input("Enter book name: ")
+        book_author = input("Enter book author: ")
+        release_year = input("Enter release year: ")
+        number_pages = input("Enter number of pages: ")
+        new_book = book_name+ ","+ book_author+"," + release_year +","+ number_pages + "\n"
+            
+        books.write(new_book)
+            
+    def remove_book(self):
+        books= open("books.txt","r",encoding="utf-8")
+        book_name = input("Enter the name of the book to remove: ")
+            
+        lines = books.readlines()
+        for i in lines:
+            if book_name not in i:
+                books.write(i)
+            
+        
+def main():
+    lib = library()
+
+    while True:
+        print("*** MENU***")
+        print("1) List Books")
+        print("2) Add Book")
+        print("3) Remove Book")
+        choice = input("Enter your choice (1/2/3): ")
+
+        if choice == '1':
+            lib.list_books()
+        elif choice == '2':
+            lib.add_book()
+        elif choice == '3':
+            lib.remove_book()
+        else:
+            print("Invalid choice. Please enter a valid option.")
+        
+        
+    
+
+
+if __name__ == "__main__":
+    main()        
+        
+    
+      
